@@ -54,3 +54,4 @@ else
 fi
 
 printf 'Installation complete. Open a new terminal to load the zsh configuration.\n'
+printf 'Karabiner-Elements still requires macOS Accessibility and Input Monitoring permissions.\n'

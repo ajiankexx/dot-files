@@ -10,8 +10,10 @@ zsh/.zcompdump*
 # This directory is an independent Git project, not part of these dotfiles.
 light-boat/
 fish
-karabiner/
 nvim
+
+# Karabiner keeps dated copies here; the active karabiner.json is tracked.
+karabiner/automatic_backups/
 
 # Downloaded Raycast extension bundles and source maps are machine-local caches.
 raycast/extensions/
