@@ -26,3 +26,12 @@ alias gs='git status'
 codex-huoshan() {
   CODEX_HOME="$HOME/.codex-huoshan" command codex "$@"
 }
+
+# Quickly name the current WezTerm tab: tabname "project-name".
+tabname() {
+  if [[ -z "$WEZTERM_PANE" ]]; then
+    print -u2 'tabname: this command must run inside WezTerm'
+    return 1
+  fi
+  command wezterm cli set-tab-title "$*"
+}
