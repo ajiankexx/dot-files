@@ -48,22 +48,38 @@ function precmd {
   PROMPT_CONTEXT="$(prompt_git_segment)$(prompt_python_segment)$(prompt_node_segment)"
 }
 
+function zle-set-cursor-shape {
+  # DECSCUSR: a steady block in vi normal mode, a steady bar while inserting.
+  if [[ $1 == vicmd ]]; then
+    printf '\e[2 q'
+  else
+    printf '\e[6 q'
+  fi
+}
+
 function zle-keymap-select {
   if [[ $KEYMAP == vicmd ]]; then
     VIM_PROMPT_MODE='%K{yellow}%F{black} N %f%k'
   else
     VIM_PROMPT_MODE='%K{green}%F{black} I %f%k'
   fi
+  zle-set-cursor-shape "$KEYMAP"
   zle reset-prompt
 }
 
 function zle-line-init {
   VIM_PROMPT_MODE='%K{green}%F{black} I %f%k'
+  zle-set-cursor-shape viins
   zle reset-prompt
+}
+
+function zle-line-finish {
+  zle-set-cursor-shape vicmd
 }
 
 zle -N zle-keymap-select
 zle -N zle-line-init
+zle -N zle-line-finish
 
 PROMPT='${VIM_PROMPT_MODE}%K{240}%F{255} %~ %f%k${PROMPT_CONTEXT}
 %F{81}❯%f '
