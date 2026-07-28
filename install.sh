@@ -39,13 +39,15 @@ if [[ "$skip_brew" == false ]]; then
   brew bundle --file="$repo_root/Brewfile"
 fi
 
-zshrc_source="$repo_root/zsh/zshrc"
+zshrc_source="$repo_root/.zshrc"
 zshrc_target="$HOME/.zshrc"
 if [[ -L "$zshrc_target" && "$(readlink "$zshrc_target")" == "$zshrc_source" ]]; then
   printf '~/.zshrc is already linked.\n'
 elif [[ -e "$zshrc_target" || -L "$zshrc_target" ]]; then
-  printf 'Existing %s was left unchanged. Link it to %s manually if desired.\n' \
-    "$zshrc_target" "$zshrc_source"
+  backup="$HOME/.zshrc.backup.$(date +%Y%m%d%H%M%S)"
+  mv "$zshrc_target" "$backup"
+  ln -s "$zshrc_source" "$zshrc_target"
+  printf 'Backed up the existing ~/.zshrc to %s and created the repository link.\n' "$backup"
 else
   ln -s "$zshrc_source" "$zshrc_target"
   printf 'Linked ~/.zshrc to the repository configuration.\n'
