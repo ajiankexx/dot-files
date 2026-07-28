@@ -140,6 +140,7 @@ return {
     initial_rows = 50,
     initial_cols = 120,
     automatically_reload_config = true,
+    notification_handling = 'AlwaysShow',
     color_scheme = 'Catppuccin Mocha',
     use_fancy_tab_bar = false,
     tab_bar_at_bottom = false,
