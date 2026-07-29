@@ -1,19 +1,11 @@
-# Sensitive local environment variables; keep only non-secret examples in Git.
+# Sensitive local environment variables.
 .env
 .env.*
 !.env.example
 
 # Local/system-generated files.
 .DS_Store
-zsh/.zcompdump*
+.config/zsh/.zcompdump*
 
-# This directory is an independent Git project, not part of these dotfiles.
-light-boat/
-fish
-nvim
-
-# Karabiner keeps dated copies here; the active karabiner.json is tracked.
-karabiner/automatic_backups/
-
-# Downloaded Raycast extension bundles and source maps are machine-local caches.
-raycast/extensions/
+# Karabiner keeps dated copies here.
+.config/karabiner/automatic_backups/
