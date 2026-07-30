@@ -27,9 +27,23 @@ bash install.sh
 
 安装脚本逐个处理 `.config/` 和 `home/` 中的顶层条目：
 
-1. 目标已存在时，先备份再替换。
-2. 目标不存在时，直接复制，并记录该目标原先不存在。
-3. 文件、目录和符号链接都会保留。
+1. 检查 Cargo；未安装时通过 rustup 安装 Rust 工具链。
+2. 通过 Cargo 安装 `tree-sitter-cli`。
+3. 目标已存在时，先备份再替换。
+4. 目标不存在时，直接复制，并记录该目标原先不存在。
+5. 文件、目录和符号链接都会保留。
+
+Cargo 缺失时执行：
+
+```sh
+curl https://sh.rustup.rs -sSf | sh
+```
+
+安装 `tree-sitter-cli` 时执行：
+
+```sh
+cargo binstall tree-sitter-cli
+```
 
 默认备份位置是 `~/.dotfiles-backups/install-<时间戳>/`。可通过环境变量
 修改备份根目录：

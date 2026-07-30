@@ -36,6 +36,42 @@ if [[ "${REPO_DIR}" == "${CONFIG_TARGET}" ]]; then
   exit 1
 fi
 
+ensure_cargo() {
+  if command -v cargo >/dev/null 2>&1; then
+    printf 'Cargo 已安装: %s\n' "$(command -v cargo)"
+    return 0
+  fi
+
+  if ! command -v curl >/dev/null 2>&1; then
+    printf '错误: 未找到 Cargo，也未找到安装 rustup 所需的 curl。\n' >&2
+    exit 1
+  fi
+
+  printf '未找到 Cargo，正在通过 rustup 安装 Rust 工具链……\n'
+  curl https://sh.rustup.rs -sSf | sh
+  export PATH="${HOME}/.cargo/bin:${PATH}"
+
+  if ! command -v cargo >/dev/null 2>&1; then
+    printf '错误: rustup 执行完成后仍未找到 Cargo。\n' >&2
+    exit 1
+  fi
+
+  printf 'Cargo 安装完成: %s\n' "$(command -v cargo)"
+}
+
+install_tree_sitter_cli() {
+  if ! cargo binstall --version >/dev/null 2>&1; then
+    printf '未找到 cargo-binstall，正在通过 Cargo 安装……\n'
+    cargo install cargo-binstall
+  fi
+
+  printf '正在安装 tree-sitter-cli……\n'
+  cargo binstall tree-sitter-cli
+}
+
+ensure_cargo
+install_tree_sitter_cli
+
 timestamp="$(date '+%Y%m%d-%H%M%S')"
 backup_dir="${BACKUP_ROOT}/install-${timestamp}"
 suffix=1
