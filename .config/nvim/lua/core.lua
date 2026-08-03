@@ -1,6 +1,6 @@
 -- INFO: Those variables do not support wildcards
 vim.g.markdown_support_filetype = { 'markdown', 'gitcommit', 'text', 'Avante' }
-vim.g.root_markers = { '.git', '.root', 'pom.xml', 'go.mod', 'pyproject.toml', 'mvnw', 'gradlew', 'build.gradle' }
+vim.g.root_markers = { '.git', '.root', 'pom.xml', 'go.work', 'go.mod', 'pyproject.toml', 'mvnw', 'gradlew', 'build.gradle' }
 vim.g.frontend_filetype = { 'typescript', 'javascript', 'vue', 'html', 'css' }
 
 vim.g.big_file_limit = 5 * 1024 * 1024 -- 5 MB
@@ -54,7 +54,12 @@ vim.o.shiftwidth = 4
 -- Every <tab> will go right by 4 spaces, every <bs> will go left by 4 spaces
 vim.o.showbreak = '↪'
 vim.o.encoding = 'utf-8'
+local zsh = vim.fn.exepath('zsh')
+if zsh ~= '' then vim.o.shell = zsh end
+vim.o.foldcolumn = '1'
 vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 vim.o.sessionoptions = 'buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions'
 
 vim.api.nvim_create_augroup('UserDIY', {})
@@ -149,7 +154,3 @@ vim.api.nvim_create_user_command('GenBigDirFiles', function()
         vim.notify('Big dir files generated successfully: ' .. output_path, vim.log.levels.INFO)
     end)
 end, {})
-
-
-
-

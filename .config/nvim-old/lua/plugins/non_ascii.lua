@@ -5,7 +5,7 @@ return {
     },
     opts = {
         word = {
-            word_files = { vim.fs.joinpath(vim.fn.stdpath('config'), 'dict', 'zh_dict.txt') },
+            word_files = { vim.fn.expand('~/.config/nvim/dict/zh_dict.txt') },
         }
     },
     config = function(_, opts)

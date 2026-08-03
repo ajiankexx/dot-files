@@ -11,7 +11,7 @@ return {
         word_jump = {
             -- word 文件每行为一个中文词语
             -- 查看 字典转换 部分了解如何生成 word 文件
-            word_files = { vim.fn.expand('~/.config/nvim/dict/zh_dict.txt') },
+            word_files = { vim.fs.joinpath(vim.fn.stdpath('config'), 'dict', 'zh_dict.txt') },
         }
     },
     config = function(_, opts)

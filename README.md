@@ -29,9 +29,10 @@ bash install.sh
 
 1. 检查 Cargo；未安装时通过 rustup 安装 Rust 工具链。
 2. 通过 Cargo 安装 `tree-sitter-cli`。
-3. 目标已存在时，先备份再替换。
-4. 目标不存在时，直接复制，并记录该目标原先不存在。
-5. 文件、目录和符号链接都会保留。
+3. 检查 uv；未安装时通过 uv 官方安装脚本安装。
+4. 目标已存在时，先备份再替换。
+5. 目标不存在时，直接复制，并记录该目标原先不存在。
+6. 文件、目录和符号链接都会保留。
 
 Cargo 缺失时执行：
 
@@ -42,7 +43,13 @@ curl https://sh.rustup.rs -sSf | sh
 安装 `tree-sitter-cli` 时执行：
 
 ```sh
-cargo binstall tree-sitter-cli
+cargo install tree-sitter-cli
+```
+
+安装 uv 时执行：
+
+```sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 默认备份位置是 `~/.dotfiles-backups/install-<时间戳>/`。可通过环境变量

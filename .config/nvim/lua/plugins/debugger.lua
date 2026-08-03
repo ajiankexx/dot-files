@@ -94,6 +94,8 @@ return {
         local function debug_test_under_cursor()
             if vim.bo.filetype == 'java' then
                 require('jdtls').test_nearest_method()
+            elseif vim.bo.filetype == 'go' then
+                vim.cmd('GoDebug -n')
             else
                 vim.notify('Debugging test under cursor is not supported for this filetype')
             end

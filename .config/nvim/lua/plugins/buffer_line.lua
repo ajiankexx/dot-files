@@ -10,7 +10,7 @@ return {
     config = function()
         local buffer_line = require('bufferline')
         buffer_line.setup({
-            highlights = require('catppuccin.groups.integrations.bufferline').get(),
+            highlights = require('catppuccin.special.bufferline').get_theme(),
             options = {
                 numbers = function(opts)
                     local state = require('bufferline.state')

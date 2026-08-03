@@ -1,11 +1,13 @@
 return {
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
     dependencies = {
-        'williamboman/mason.nvim',
+        'mason-org/mason.nvim',
+        'neovim/nvim-lspconfig',
     },
-    branch = 'v1.x',
     opts = {
-        automatic_installation = false,
+        -- LSP activation is configured explicitly in lsp_config.lua so
+        -- non-Mason servers continue to work as well.
+        automatic_enable = false,
         ensure_installed = {
             'clangd',
             'pyright',

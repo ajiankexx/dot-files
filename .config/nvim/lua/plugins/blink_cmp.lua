@@ -144,7 +144,9 @@ return {
             'Kaiser-Yang/blink-cmp-avante',
             'rafamadriz/friendly-snippets',
         },
-        version = '*',
+        -- main currently tracks the breaking v2 development line. The README
+        -- recommends the latest stable v1 release for production configs.
+        version = '1.*',
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
@@ -372,7 +374,7 @@ return {
                         --- @module 'blink-cmp-dictionary'
                         --- @type blink-cmp-dictionary.Options
                         opts = {
-                            dictionary_files = { vim.fn.expand('~/.config/nvim/dict/en_dict.txt') },
+                            dictionary_files = { vim.fs.joinpath(vim.fn.stdpath('config'), 'dict', 'en_dict.txt') },
                         },
                     },
                     lsp = {

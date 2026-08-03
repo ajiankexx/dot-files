@@ -15,20 +15,15 @@ local plugins = {
     require('plugins.lsp_saga'),
     require('plugins.mason'),
     require('plugins.mason_lsp_config'),
-    -- require('plugins.nvim_java'),
     require('plugins.ufo'),
-    -- require('plugins.non-ascii'),
     require('plugins.blink_cmp'),
     require('plugins.formatter'),
+    require('plugins.go'),
 
     require('plugins.terminal'),
     -- Git
     require('plugins.git_signs'),
     require('plugins.git_conflict'),
-
-    -- AI
-    -- require('plugins.copilot'),
-    -- require('plugins.avante'),
 
     require('plugins.markdown_render'),
     require('plugins.markdown_preview'),
@@ -40,28 +35,19 @@ local plugins = {
     require('plugins.buffer_line'),
     require('plugins.comment'),
     require('plugins.guess_indent'),
-    -- require('plugins.search'),
     require('plugins.snacks_config'),
     require('plugins.surround'),
     require('plugins.which_key'),
     require('plugins.win_resizer'),
     require('plugins.yanky'),
-    -- require('plugins.non_ascii'),
-    require('plugins.ufo'),
     require('plugins.debugger'),
     require('plugins.img_clip'),
     require('plugins.markdown_toc'),
 
-    require('plugins.markdown_render'),
     require('plugins.highlight_colors'),
-    require('plugins.img_clip'),
     require('plugins.pastify'),
     require('plugins.kulala'),
     require('plugins.flash'),
-    -- require('plugins.non_ascii')
-    --
-    require('plugins.translate'),
-    -- require('plugins.dict'),
 }
 if vim.fn.executable('gh') == 1 then
     vim.list_extend(plugins, {

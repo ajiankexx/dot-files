@@ -43,7 +43,10 @@
 -- Refer to: https://github.com/TobinPalmer/pastify.nvim
 return {
   'ajiankexx/pastify.nvim',
-  cmd = { 'Pastify' },
+  -- Pastify executes Python during setup. Keep the rest of Neovim usable on
+  -- machines where the Python provider or Pillow has not been installed yet.
+  cond = function() return vim.fn.has('python3') == 1 end,
+  cmd = { 'Pastify', 'PastifyAfter' },
   event = 'VeryLazy',
   ft = vim.g.markdown_support_filetype,
   config = function()
@@ -60,4 +63,3 @@ return {
     }
   end
 }
-

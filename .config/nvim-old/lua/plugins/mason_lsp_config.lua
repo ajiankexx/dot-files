@@ -5,6 +5,7 @@ return {
         'neovim/nvim-lspconfig',
     },
     opts = {
+        automatic_installation = false,
         -- LSP activation is configured explicitly in lsp_config.lua so
         -- non-Mason servers continue to work as well.
         automatic_enable = false,

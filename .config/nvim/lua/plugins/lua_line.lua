@@ -27,7 +27,7 @@ return {
             lualine_a = { 'mode' },
             lualine_b = { 'branch', 'diff' },
             -- lualine_c = { 'filename' },
-            
+
             -- Refer: https://github.com/nvim-lualine/lualine.nvim
             lualine_c = {
                 {

@@ -80,8 +80,7 @@ local swap_prev = {
 
 return {
     'nvim-treesitter/nvim-treesitter',
-    lazy = false,
-    build = ':TSUpdate',
+    build = function() require('nvim-treesitter.install').update({ with_sync = true })() end,
     dependencies = {
         {
             'andymass/vim-matchup',
