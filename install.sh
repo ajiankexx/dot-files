@@ -10,16 +10,18 @@ readonly BACKUP_ROOT="${DOTFILES_BACKUP_DIR:-${HOME}/.dotfiles-backups}"
 
 install_brew=false
 install_nvim=false
+install_karabiner=false
 
 usage() {
   cat <<EOF
-用法: ${REPO_DIR}/install.sh [--brew | --nvim]
+用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner]
 
 将仓库中的配置复制到当前用户目录，并在覆盖前创建可恢复的备份。
 
 选项:
   --brew     另外使用仓库根目录的 Brewfile 安装 Homebrew 软件包
   --nvim     仅更新 ~/.config/nvim
+  --karabiner 仅更新 ~/.config/karabiner
   -h, --help 显示帮助
 EOF
 }
@@ -28,14 +30,21 @@ while (($#)); do
   case "$1" in
     --brew) install_brew=true ;;
     --nvim) install_nvim=true ;;
+    --karabiner) install_karabiner=true ;;
     -h|--help) usage; exit 0 ;;
     *) printf '未知选项: %s\n' "$1" >&2; usage >&2; exit 2 ;;
   esac
   shift
 done
 
-if [[ "${install_brew}" == true && "${install_nvim}" == true ]]; then
-  printf '错误: --brew 不能与 --nvim 同时使用。\n' >&2
+if [[ "${install_brew}" == true &&
+      ( "${install_nvim}" == true || "${install_karabiner}" == true ) ]]; then
+  printf '错误: --brew 不能与 --nvim 或 --karabiner 同时使用。\n' >&2
+  exit 2
+fi
+
+if [[ "${install_nvim}" == true && "${install_karabiner}" == true ]]; then
+  printf '错误: --nvim 不能与 --karabiner 同时使用。\n' >&2
   exit 2
 fi
 
@@ -95,7 +104,7 @@ ensure_uv() {
   printf 'uv 安装完成: %s\n' "$(command -v uv)"
 }
 
-if [[ "${install_nvim}" == false ]]; then
+if [[ "${install_nvim}" == false && "${install_karabiner}" == false ]]; then
   ensure_cargo
   install_tree_sitter_cli
   ensure_uv
@@ -156,6 +165,8 @@ printf '备份目录: %s\n' "${backup_dir}"
 
 if [[ "${install_nvim}" == true ]]; then
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config" "nvim"
+elif [[ "${install_karabiner}" == true ]]; then
+  install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config" "karabiner"
 else
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config"
   install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home"

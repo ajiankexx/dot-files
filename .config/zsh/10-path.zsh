@@ -5,6 +5,8 @@ fi
 
 # Path.
 export PATH="$HOME/.bun/bin:$PATH"
+export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # WezTerm is installed in Downloads, so expose the CLI bundled with the app.
 # Update this path if the app is moved or replaced with a newer release.

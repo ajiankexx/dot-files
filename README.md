@@ -65,6 +65,14 @@ DOTFILES_BACKUP_DIR=/path/to/backups bash install.sh
 bash install.sh --brew
 ```
 
+仅安装 Karabiner 配置：
+
+```sh
+bash install.sh --karabiner
+```
+
+该命令仅更新 `~/.config/karabiner`，同样会在覆盖前创建备份。
+
 ## 恢复
 
 使用[恢复脚本](/restore.sh)查看备份：
