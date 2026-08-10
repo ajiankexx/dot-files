@@ -73,6 +73,8 @@ cask "font-jetbrains-mono-nerd-font"
 cask "font-symbols-only-nerd-font"
 # Keyboard customisation utility for macOS
 cask "karabiner-elements"
+# Lua automation tool; config lives in home/.hammerspoon.
+cask "hammerspoon"
 # Smooths scrolling and set mouse scroll directions independently
 cask "mos"
 # MySQL/MariaDB database management

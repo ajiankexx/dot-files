@@ -11,10 +11,11 @@ readonly BACKUP_ROOT="${DOTFILES_BACKUP_DIR:-${HOME}/.dotfiles-backups}"
 install_brew=false
 install_nvim=false
 install_karabiner=false
+install_hammerspoon=false
 
 usage() {
   cat <<EOF
-用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner]
+用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner | --hammerspoon]
 
 将仓库中的配置复制到当前用户目录，并在覆盖前创建可恢复的备份。
 
@@ -22,6 +23,7 @@ usage() {
   --brew     另外使用仓库根目录的 Brewfile 安装 Homebrew 软件包
   --nvim     仅更新 ~/.config/nvim
   --karabiner 仅更新 ~/.config/karabiner
+  --hammerspoon 仅更新 ~/.hammerspoon
   -h, --help 显示帮助
 EOF
 }
@@ -31,6 +33,7 @@ while (($#)); do
     --brew) install_brew=true ;;
     --nvim) install_nvim=true ;;
     --karabiner) install_karabiner=true ;;
+    --hammerspoon) install_hammerspoon=true ;;
     -h|--help) usage; exit 0 ;;
     *) printf '未知选项: %s\n' "$1" >&2; usage >&2; exit 2 ;;
   esac
@@ -38,13 +41,15 @@ while (($#)); do
 done
 
 if [[ "${install_brew}" == true &&
-      ( "${install_nvim}" == true || "${install_karabiner}" == true ) ]]; then
-  printf '错误: --brew 不能与 --nvim 或 --karabiner 同时使用。\n' >&2
+      ( "${install_nvim}" == true || "${install_karabiner}" == true || "${install_hammerspoon}" == true ) ]]; then
+  printf '错误: --brew 不能与 --nvim、--karabiner 或 --hammerspoon 同时使用。\n' >&2
   exit 2
 fi
 
-if [[ "${install_nvim}" == true && "${install_karabiner}" == true ]]; then
-  printf '错误: --nvim 不能与 --karabiner 同时使用。\n' >&2
+if [[ ( "${install_nvim}" == true && "${install_karabiner}" == true ) ||
+      ( "${install_nvim}" == true && "${install_hammerspoon}" == true ) ||
+      ( "${install_karabiner}" == true && "${install_hammerspoon}" == true ) ]]; then
+  printf '错误: --nvim、--karabiner 和 --hammerspoon 不能同时使用。\n' >&2
   exit 2
 fi
 
@@ -104,7 +109,7 @@ ensure_uv() {
   printf 'uv 安装完成: %s\n' "$(command -v uv)"
 }
 
-if [[ "${install_nvim}" == false && "${install_karabiner}" == false ]]; then
+if [[ "${install_nvim}" == false && "${install_karabiner}" == false && "${install_hammerspoon}" == false ]]; then
   ensure_cargo
   install_tree_sitter_cli
   ensure_uv
@@ -167,6 +172,8 @@ if [[ "${install_nvim}" == true ]]; then
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config" "nvim"
 elif [[ "${install_karabiner}" == true ]]; then
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config" "karabiner"
+elif [[ "${install_hammerspoon}" == true ]]; then
+  install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home" ".hammerspoon"
 else
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config"
   install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home"
