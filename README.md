@@ -71,6 +71,12 @@ bash install.sh --brew
 bash install.sh --karabiner
 ```
 
+仅安装 WezTerm 配置：
+
+```sh
+bash install.sh --wezterm
+```
+
 该命令仅更新 `~/.config/karabiner`，同样会在覆盖前创建备份。
 
 ## 恢复

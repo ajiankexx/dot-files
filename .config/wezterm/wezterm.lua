@@ -170,6 +170,10 @@ return {
     }),
     font_size = 14,
     keys = {
+        { key = 'h', mods = 'SUPER', action = act.ActivateTabRelative(-1) },
+        { key = 'l', mods = 'SUPER', action = act.ActivateTabRelative(1) },
+        { key = 'LeftArrow', mods = 'SUPER', action = act.MoveTabRelative(-1) },
+        { key = 'RightArrow', mods = 'SUPER', action = act.MoveTabRelative(1) },
         { key = 'z', mods = 'CTRL|ALT', action = 'Nop' },
         { key = '=', mods = 'CTRL|SUPER', action = act.IncreaseFontSize },
         { key = '-', mods = 'CTRL|SUPER', action = act.DecreaseFontSize },

@@ -12,10 +12,11 @@ install_brew=false
 install_nvim=false
 install_karabiner=false
 install_hammerspoon=false
+install_wezterm=false
 
 usage() {
   cat <<EOF
-用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner | --hammerspoon]
+用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner | --hammerspoon | --wezterm]
 
 将仓库中的配置复制到当前用户目录，并在覆盖前创建可恢复的备份。
 
@@ -24,6 +25,7 @@ usage() {
   --nvim     仅更新 ~/.config/nvim
   --karabiner 仅更新 ~/.config/karabiner
   --hammerspoon 仅更新 ~/.hammerspoon
+  --wezterm  仅更新 ~/.config/wezterm
   -h, --help 显示帮助
 EOF
 }
@@ -34,6 +36,7 @@ while (($#)); do
     --nvim) install_nvim=true ;;
     --karabiner) install_karabiner=true ;;
     --hammerspoon) install_hammerspoon=true ;;
+    --wezterm) install_wezterm=true ;;
     -h|--help) usage; exit 0 ;;
     *) printf '未知选项: %s\n' "$1" >&2; usage >&2; exit 2 ;;
   esac
@@ -41,15 +44,18 @@ while (($#)); do
 done
 
 if [[ "${install_brew}" == true &&
-      ( "${install_nvim}" == true || "${install_karabiner}" == true || "${install_hammerspoon}" == true ) ]]; then
-  printf '错误: --brew 不能与 --nvim、--karabiner 或 --hammerspoon 同时使用。\n' >&2
+      ( "${install_nvim}" == true || "${install_karabiner}" == true || "${install_hammerspoon}" == true || "${install_wezterm}" == true ) ]]; then
+  printf '错误: --brew 不能与 --nvim、--karabiner、--hammerspoon 或 --wezterm 同时使用。\n' >&2
   exit 2
 fi
 
-if [[ ( "${install_nvim}" == true && "${install_karabiner}" == true ) ||
-      ( "${install_nvim}" == true && "${install_hammerspoon}" == true ) ||
-      ( "${install_karabiner}" == true && "${install_hammerspoon}" == true ) ]]; then
-  printf '错误: --nvim、--karabiner 和 --hammerspoon 不能同时使用。\n' >&2
+selected_config_count=0
+for selected_config in "${install_nvim}" "${install_karabiner}" "${install_hammerspoon}" "${install_wezterm}"; do
+  [[ "${selected_config}" == true ]] && ((selected_config_count += 1))
+done
+
+if ((selected_config_count > 1)); then
+  printf '错误: --nvim、--karabiner、--hammerspoon 和 --wezterm 不能同时使用。\n' >&2
   exit 2
 fi
 
@@ -109,7 +115,7 @@ ensure_uv() {
   printf 'uv 安装完成: %s\n' "$(command -v uv)"
 }
 
-if [[ "${install_nvim}" == false && "${install_karabiner}" == false && "${install_hammerspoon}" == false ]]; then
+if ((selected_config_count == 0)); then
   ensure_cargo
   install_tree_sitter_cli
   ensure_uv
@@ -174,6 +180,8 @@ elif [[ "${install_karabiner}" == true ]]; then
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config" "karabiner"
 elif [[ "${install_hammerspoon}" == true ]]; then
   install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home" ".hammerspoon"
+elif [[ "${install_wezterm}" == true ]]; then
+  install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config" "wezterm"
 else
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config"
   install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home"
