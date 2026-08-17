@@ -1,0 +1,26 @@
+[user]
+  email = ajiankex@163.com
+  name = ajiankexx
+
+[url "gitlab@git.garena.com:"]
+  insteadOf = https://git.garena.com/
+
+[alias]
+  s = status -sb
+  a = add
+  aa = add -A
+  c = commit
+  cm = commit -m
+  l = log --oneline --graph --decorate --all
+  d = diff
+  ds = diff --staged
+  b = branch
+  co = checkout
+  sw = switch
+  cb = switch -c
+  f = fetch --prune
+  p = pull --rebase
+  pu = push
+  unstage = restore --staged
+  last = log -1 HEAD --stat
+  aliases = config --get-regexp ^alias\\.
