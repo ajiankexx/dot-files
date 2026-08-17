@@ -34,6 +34,8 @@ vim.o.spelllang = 'en_us,en'
 vim.o.timeoutlen = 300
 vim.o.ttimeoutlen = 0
 vim.o.mouse = 'a'
+-- Make the system clipboard the default register for yank, delete, change, and put.
+vim.opt.clipboard:append('unnamedplus')
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.scrolloff = 5

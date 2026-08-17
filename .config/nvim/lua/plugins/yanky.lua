@@ -5,7 +5,7 @@ return {
         local map_set = require('utils').map_set
         require('yanky').setup({
             system_clipboard = {
-                clipboard_registore = '+',
+                clipboard_register = '+',
             },
             picker = {
                 highlight = {
