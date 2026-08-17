@@ -77,7 +77,23 @@ bash install.sh --karabiner
 bash install.sh --wezterm
 ```
 
-该命令仅更新 `~/.config/karabiner`，同样会在覆盖前创建备份。
+该命令仅更新 `~/.config/wezterm`，同样会在覆盖前创建备份。
+
+仅更新 Zsh 配置：
+
+```sh
+bash install.sh --zsh
+```
+
+该命令会更新 `~/.config/zsh` 和 `~/.zshrc`，同样会在覆盖前创建备份。
+
+仅更新 `home/` 下的全部配置：
+
+```sh
+bash install.sh --home
+```
+
+该命令会更新 `home/` 中的所有顶层条目，并在覆盖前创建备份。
 
 ## 恢复
 

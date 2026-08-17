@@ -13,10 +13,12 @@ install_nvim=false
 install_karabiner=false
 install_hammerspoon=false
 install_wezterm=false
+install_zsh=false
+install_home=false
 
 usage() {
   cat <<EOF
-用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner | --hammerspoon | --wezterm]
+用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner | --hammerspoon | --wezterm | --zsh | --home]
 
 将仓库中的配置复制到当前用户目录，并在覆盖前创建可恢复的备份。
 
@@ -26,6 +28,8 @@ usage() {
   --karabiner 仅更新 ~/.config/karabiner
   --hammerspoon 仅更新 ~/.hammerspoon
   --wezterm  仅更新 ~/.config/wezterm
+  --zsh      仅更新 ~/.config/zsh 和 ~/.zshrc
+  --home     仅更新仓库 home/ 下的全部配置
   -h, --help 显示帮助
 EOF
 }
@@ -37,6 +41,8 @@ while (($#)); do
     --karabiner) install_karabiner=true ;;
     --hammerspoon) install_hammerspoon=true ;;
     --wezterm) install_wezterm=true ;;
+    --zsh) install_zsh=true ;;
+    --home) install_home=true ;;
     -h|--help) usage; exit 0 ;;
     *) printf '未知选项: %s\n' "$1" >&2; usage >&2; exit 2 ;;
   esac
@@ -44,18 +50,18 @@ while (($#)); do
 done
 
 if [[ "${install_brew}" == true &&
-      ( "${install_nvim}" == true || "${install_karabiner}" == true || "${install_hammerspoon}" == true || "${install_wezterm}" == true ) ]]; then
-  printf '错误: --brew 不能与 --nvim、--karabiner、--hammerspoon 或 --wezterm 同时使用。\n' >&2
+      ( "${install_nvim}" == true || "${install_karabiner}" == true || "${install_hammerspoon}" == true || "${install_wezterm}" == true || "${install_zsh}" == true || "${install_home}" == true ) ]]; then
+  printf '错误: --brew 不能与 --nvim、--karabiner、--hammerspoon、--wezterm、--zsh 或 --home 同时使用。\n' >&2
   exit 2
 fi
 
 selected_config_count=0
-for selected_config in "${install_nvim}" "${install_karabiner}" "${install_hammerspoon}" "${install_wezterm}"; do
+for selected_config in "${install_nvim}" "${install_karabiner}" "${install_hammerspoon}" "${install_wezterm}" "${install_zsh}" "${install_home}"; do
   [[ "${selected_config}" == true ]] && ((selected_config_count += 1))
 done
 
 if ((selected_config_count > 1)); then
-  printf '错误: --nvim、--karabiner、--hammerspoon 和 --wezterm 不能同时使用。\n' >&2
+  printf '错误: --nvim、--karabiner、--hammerspoon、--wezterm、--zsh 和 --home 不能同时使用。\n' >&2
   exit 2
 fi
 
@@ -153,6 +159,7 @@ install_directory() {
   local source_path name target_path
 
   [[ -d "${source_dir}" ]] || return 0
+  mkdir -p "${target_dir}"
 
   while IFS= read -r -d '' source_path; do
     name="${source_path##*/}"
@@ -182,6 +189,11 @@ elif [[ "${install_hammerspoon}" == true ]]; then
   install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home" ".hammerspoon"
 elif [[ "${install_wezterm}" == true ]]; then
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config" "wezterm"
+elif [[ "${install_zsh}" == true ]]; then
+  install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config" "zsh"
+  install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home" ".zshrc"
+elif [[ "${install_home}" == true ]]; then
+  install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home"
 else
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config"
   install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home"

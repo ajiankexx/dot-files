@@ -35,3 +35,11 @@ fi
 
 # bun completions
 [[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
+
+# Load after vi key bindings so Ctrl+R is available in every editing mode.
+# Its initial fzf query is the text already typed on the command line.
+if command -v fzf >/dev/null 2>&1; then
+  fzf_key_bindings="$(brew --prefix fzf 2>/dev/null)/shell/key-bindings.zsh"
+  [[ -r "$fzf_key_bindings" ]] && source "$fzf_key_bindings"
+  unset fzf_key_bindings
+fi

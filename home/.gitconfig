@@ -11,7 +11,7 @@
   aa = add -A
   c = commit
   cm = commit -m
-  l = log --oneline --graph --decorate --all
+  l = log --graph --decorate --all --pretty=format:'%C(yellow)%h%Creset  %s  %C(cyan)%an%Creset %C(magenta)%ar%Creset'
   d = diff
   ds = diff --staged
   b = branch

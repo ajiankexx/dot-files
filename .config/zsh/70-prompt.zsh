@@ -43,13 +43,21 @@ function prompt_node_segment {
   [[ -n "$node_version" ]] && prompt_segment cyan black "node:${node_version#v}"
 }
 
-function precmd {
+function dotfiles_update_prompt {
+  # Recover from interactive programs that exit before restoring cursor
+  # visibility. DECSCUSR below changes shape but does not make a hidden cursor
+  # visible again.
+  printf '\e[?25h'
   vcs_info
   PROMPT_CONTEXT="$(prompt_git_segment)$(prompt_python_segment)$(prompt_node_segment)"
 }
 
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd dotfiles_update_prompt
+
 function zle-set-cursor-shape {
   # DECSCUSR: a steady block in vi normal mode, a steady bar while inserting.
+  printf '\e[?25h'
   if [[ $1 == vicmd ]]; then
     printf '\e[2 q'
   else

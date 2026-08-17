@@ -2,11 +2,13 @@
 .env
 .env.*
 !.env.example
+.config/zsh/91-key.zsh
 *.log
 
 # Local/system-generated files.
 .DS_Store
 .config/zsh/.zcompdump*
+home/.zcompdump*
 
 # Karabiner keeps dated copies here.
 .config/karabiner/automatic_backups/
