@@ -7,6 +7,16 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
 
+# Jump to the root of the current Git repository.
+function croot {
+  local root
+  root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+    print -u2 -- 'croot: not inside a Git repository'
+    return 1
+  }
+  cd "$root"
+}
+
 # zoxide + fzf directory picking.
 if command -v fzf >/dev/null 2>&1; then
   # Use fzf to choose a zoxide directory, with a simple directory listing preview.
