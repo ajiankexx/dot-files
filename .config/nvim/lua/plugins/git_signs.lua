@@ -7,8 +7,7 @@ return {
         attach_to_untracked = true,
         current_line_blame = false,
         current_line_blame_opts = {
-            delay = 100,
-        },
+            delay = 100,        },
         preview_config = {
             border = 'rounded',
         },

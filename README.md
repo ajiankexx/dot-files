@@ -9,6 +9,7 @@
 ├── .config/       # 顶层条目安装到 ~/.config/
 ├── home/          # 顶层条目安装到 ~/
 ├── Brewfile
+├── MANUAL_APPS.md
 ├── install.sh
 └── restore.sh
 ```
@@ -78,6 +79,8 @@ bash install.sh --wezterm
 ```
 
 该命令仅更新 `~/.config/wezterm`，同样会在覆盖前创建备份。
+
+不适合自动化安装的 macOS 软件记录在[手动安装的软件清单](/MANUAL_APPS.md)。
 
 仅更新 Zsh 配置：
 

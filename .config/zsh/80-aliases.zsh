@@ -24,8 +24,14 @@ alias gs='git status'
 
 # Temporary commands: keep short-lived or experimental wrappers here. Add future
 # temporary commands below; promote stable commands into a dedicated config file.
-codex-huoshan() {
-  CODEX_HOME="$HOME/.codex-huoshan" command codex "$@"
+# 字节火山agent plan
+codex-huoshan-agent() {
+  CODEX_HOME="$HOME/.codex-huoshan-agent" command codex "$@"
+}
+
+# 字节火山coding plan
+codex-huoshan-code() {
+  CODEX_HOME="$HOME/.codex-huoshan-code" command codex "$@"
 }
 
 # Quickly name the current WezTerm tab: tabname "project-name".
