@@ -8,6 +8,7 @@
 .
 ├── .config/       # 顶层条目安装到 ~/.config/
 ├── home/          # 顶层条目安装到 ~/
+├── vscode/        # VS Code 用户快捷键
 ├── Brewfile
 ├── MANUAL_APPS.md
 ├── install.sh
@@ -89,6 +90,15 @@ bash install.sh --zsh
 ```
 
 该命令会更新 `~/.config/zsh` 和 `~/.zshrc`，同样会在覆盖前创建备份。
+
+仅更新 VS Code 快捷键：
+
+```sh
+bash install.sh --vscode
+```
+
+该命令会将 [快捷键配置](/vscode/keybindings.json) 安装到 macOS 的
+`~/Library/Application Support/Code/User/keybindings.json`，同样会在覆盖前创建备份。
 
 仅更新 `home/` 下的全部配置：
 

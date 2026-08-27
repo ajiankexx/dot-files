@@ -5,7 +5,9 @@ set -euo pipefail
 readonly REPO_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 readonly CONFIG_SOURCE="${REPO_DIR}/.config"
 readonly HOME_SOURCE="${REPO_DIR}/home"
+readonly VSCODE_SOURCE="${REPO_DIR}/vscode"
 readonly CONFIG_TARGET="${XDG_CONFIG_HOME:-${HOME}/.config}"
+readonly VSCODE_USER_TARGET="${HOME}/Library/Application Support/Code/User"
 readonly BACKUP_ROOT="${DOTFILES_BACKUP_DIR:-${HOME}/.dotfiles-backups}"
 
 install_brew=false
@@ -15,10 +17,11 @@ install_hammerspoon=false
 install_wezterm=false
 install_zsh=false
 install_home=false
+install_vscode=false
 
 usage() {
   cat <<EOF
-用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner | --hammerspoon | --wezterm | --zsh | --home]
+用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner | --hammerspoon | --wezterm | --zsh | --vscode | --home]
 
 将仓库中的配置复制到当前用户目录，并在覆盖前创建可恢复的备份。
 
@@ -29,6 +32,7 @@ usage() {
   --hammerspoon 仅更新 ~/.hammerspoon
   --wezterm  仅更新 ~/.config/wezterm
   --zsh      仅更新 ~/.config/zsh 和 ~/.zshrc
+  --vscode   仅更新 VS Code 的用户快捷键
   --home     仅更新仓库 home/ 下的全部配置
   -h, --help 显示帮助
 EOF
@@ -42,6 +46,7 @@ while (($#)); do
     --hammerspoon) install_hammerspoon=true ;;
     --wezterm) install_wezterm=true ;;
     --zsh) install_zsh=true ;;
+    --vscode) install_vscode=true ;;
     --home) install_home=true ;;
     -h|--help) usage; exit 0 ;;
     *) printf '未知选项: %s\n' "$1" >&2; usage >&2; exit 2 ;;
@@ -50,18 +55,18 @@ while (($#)); do
 done
 
 if [[ "${install_brew}" == true &&
-      ( "${install_nvim}" == true || "${install_karabiner}" == true || "${install_hammerspoon}" == true || "${install_wezterm}" == true || "${install_zsh}" == true || "${install_home}" == true ) ]]; then
-  printf '错误: --brew 不能与 --nvim、--karabiner、--hammerspoon、--wezterm、--zsh 或 --home 同时使用。\n' >&2
+      ( "${install_nvim}" == true || "${install_karabiner}" == true || "${install_hammerspoon}" == true || "${install_wezterm}" == true || "${install_zsh}" == true || "${install_vscode}" == true || "${install_home}" == true ) ]]; then
+  printf '错误: --brew 不能与 --nvim、--karabiner、--hammerspoon、--wezterm、--zsh、--vscode 或 --home 同时使用。\n' >&2
   exit 2
 fi
 
 selected_config_count=0
-for selected_config in "${install_nvim}" "${install_karabiner}" "${install_hammerspoon}" "${install_wezterm}" "${install_zsh}" "${install_home}"; do
+for selected_config in "${install_nvim}" "${install_karabiner}" "${install_hammerspoon}" "${install_wezterm}" "${install_zsh}" "${install_vscode}" "${install_home}"; do
   [[ "${selected_config}" == true ]] && ((selected_config_count += 1))
 done
 
 if ((selected_config_count > 1)); then
-  printf '错误: --nvim、--karabiner、--hammerspoon、--wezterm、--zsh 和 --home 不能同时使用。\n' >&2
+  printf '错误: --nvim、--karabiner、--hammerspoon、--wezterm、--zsh、--vscode 和 --home 不能同时使用。\n' >&2
   exit 2
 fi
 
@@ -139,8 +144,10 @@ done
 mkdir -p \
   "${backup_dir}/.config" \
   "${backup_dir}/home" \
+  "${backup_dir}/vscode" \
   "${backup_dir}/.missing/config" \
   "${backup_dir}/.missing/home" \
+  "${backup_dir}/.missing/vscode" \
   "${CONFIG_TARGET}"
 
 copy_item() {
@@ -179,6 +186,28 @@ install_directory() {
   done < <(find "${source_dir}" -mindepth 1 -maxdepth 1 -print0)
 }
 
+install_vscode_keybindings() {
+  local source_path="${VSCODE_SOURCE}/keybindings.json"
+  local target_path="${VSCODE_USER_TARGET}/keybindings.json"
+
+  if [[ ! -f "${source_path}" ]]; then
+    printf '错误: 未找到 VS Code 快捷键配置: %s\n' "${source_path}" >&2
+    exit 1
+  fi
+
+  mkdir -p "${VSCODE_USER_TARGET}"
+  if [[ -e "${target_path}" || -L "${target_path}" ]]; then
+    copy_item "${target_path}" "${backup_dir}/vscode/keybindings.json"
+    rm -rf -- "${target_path}"
+    printf '已备份: %s\n' "${target_path}"
+  else
+    : > "${backup_dir}/.missing/vscode/keybindings.json"
+  fi
+
+  copy_item "${source_path}" "${target_path}"
+  printf '已安装: %s\n' "${target_path}"
+}
+
 printf '备份目录: %s\n' "${backup_dir}"
 
 if [[ "${install_nvim}" == true ]]; then
@@ -192,6 +221,8 @@ elif [[ "${install_wezterm}" == true ]]; then
 elif [[ "${install_zsh}" == true ]]; then
   install_directory "${CONFIG_SOURCE}" "${CONFIG_TARGET}" ".config" ".missing/config" "zsh"
   install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home" ".zshrc"
+elif [[ "${install_vscode}" == true ]]; then
+  install_vscode_keybindings
 elif [[ "${install_home}" == true ]]; then
   install_directory "${HOME_SOURCE}" "${HOME}" "home" ".missing/home"
 else

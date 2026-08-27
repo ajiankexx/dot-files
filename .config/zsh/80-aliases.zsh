@@ -34,6 +34,10 @@ codex-huoshan-code() {
   CODEX_HOME="$HOME/.codex-huoshan-code" command codex "$@"
 }
 
+codex-deepseek() {
+  CODEX_HOME="$HOME/.codex-deepseek" command codex "$@" 
+}
+
 # Quickly name the current WezTerm tab: tabname "project-name".
 tabname() {
   if [[ -z "$WEZTERM_PANE" ]]; then

@@ -4,6 +4,7 @@ set -euo pipefail
 
 readonly REPO_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 readonly CONFIG_TARGET="${XDG_CONFIG_HOME:-${HOME}/.config}"
+readonly VSCODE_USER_TARGET="${HOME}/Library/Application Support/Code/User"
 readonly BACKUP_ROOT="${DOTFILES_BACKUP_DIR:-${HOME}/.dotfiles-backups}"
 
 usage() {
@@ -61,6 +62,24 @@ restore_existing() {
   done < <(find "${backup_dir}/${backup_subdir}" -mindepth 1 -maxdepth 1 -print0)
 }
 
+restore_vscode_keybindings() {
+  local backup_path="${backup_dir}/vscode/keybindings.json"
+  local missing_marker="${backup_dir}/.missing/vscode/keybindings.json"
+  local target_path="${VSCODE_USER_TARGET}/keybindings.json"
+
+  if [[ -e "${backup_path}" || -L "${backup_path}" ]]; then
+    mkdir -p "${VSCODE_USER_TARGET}"
+    rm -rf -- "${target_path}"
+    copy_item "${backup_path}" "${target_path}"
+    printf '已恢复: %s\n' "${target_path}"
+  elif [[ -e "${missing_marker}" ]]; then
+    if [[ -e "${target_path}" || -L "${target_path}" ]]; then
+      rm -rf -- "${target_path}"
+      printf '已移除: %s\n' "${target_path}"
+    fi
+  fi
+}
+
 remove_previously_missing() {
   local missing_subdir="$1"
   local target_dir="$2"
@@ -111,6 +130,7 @@ printf '正在使用备份: %s\n' "${backup_dir}"
 
 restore_existing ".config" "${CONFIG_TARGET}"
 restore_existing "home" "${HOME}"
+restore_vscode_keybindings
 remove_previously_missing ".missing/config" "${CONFIG_TARGET}"
 remove_previously_missing ".missing/home" "${HOME}"
 

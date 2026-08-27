@@ -1,0 +1,18 @@
+[
+  {
+    "key": "cmd+h",
+    "command": "workbench.action.previousEditor"
+  },
+  {
+    "key": "cmd+l",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "cmd+left",
+    "command": "workbench.action.moveEditorLeftInGroup"
+  },
+  {
+    "key": "cmd+right",
+    "command": "workbench.action.moveEditorRightInGroup"
+  }
+]
