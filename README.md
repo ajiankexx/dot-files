@@ -10,6 +10,8 @@
 ├── home/          # 顶层条目安装到 ~/
 ├── vscode/        # VS Code 用户快捷键
 ├── Brewfile
+├── MAC_CONFIG.md
+├── mac-config.sh
 ├── MANUAL_APPS.md
 ├── install.sh
 └── restore.sh
@@ -99,6 +101,15 @@ bash install.sh --vscode
 
 该命令会将 [快捷键配置](/vscode/keybindings.json) 安装到 macOS 的
 `~/Library/Application Support/Code/User/keybindings.json`，同样会在覆盖前创建备份。
+
+macOS 的用户级配置记录在 [Mac 配置记录](/MAC_CONFIG.md)，配置命令保存在
+[mac-config.sh](/mac-config.sh)。仅更新记录中的 macOS 配置：
+
+```sh
+bash install.sh --mac
+```
+
+该命令会将 Finder 设置为显示隐藏文件，并重新启动 Finder。
 
 仅更新 `home/` 下的全部配置：
 

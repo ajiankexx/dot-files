@@ -6,6 +6,7 @@ readonly REPO_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 readonly CONFIG_SOURCE="${REPO_DIR}/.config"
 readonly HOME_SOURCE="${REPO_DIR}/home"
 readonly VSCODE_SOURCE="${REPO_DIR}/vscode"
+readonly MAC_CONFIG_SOURCE="${REPO_DIR}/mac-config.sh"
 readonly CONFIG_TARGET="${XDG_CONFIG_HOME:-${HOME}/.config}"
 readonly VSCODE_USER_TARGET="${HOME}/Library/Application Support/Code/User"
 readonly BACKUP_ROOT="${DOTFILES_BACKUP_DIR:-${HOME}/.dotfiles-backups}"
@@ -18,12 +19,13 @@ install_wezterm=false
 install_zsh=false
 install_home=false
 install_vscode=false
+install_mac=false
 
 usage() {
   cat <<EOF
-用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner | --hammerspoon | --wezterm | --zsh | --vscode | --home]
+用法: ${REPO_DIR}/install.sh [--brew | --nvim | --karabiner | --hammerspoon | --wezterm | --zsh | --vscode | --home | --mac]
 
-将仓库中的配置复制到当前用户目录，并在覆盖前创建可恢复的备份。
+将仓库中的配置复制到当前用户目录，并在覆盖前创建可恢复的备份；--mac 用于更新 macOS 用户级配置。
 
 选项:
   --brew     另外使用仓库根目录的 Brewfile 安装 Homebrew 软件包
@@ -34,6 +36,7 @@ usage() {
   --zsh      仅更新 ~/.config/zsh 和 ~/.zshrc
   --vscode   仅更新 VS Code 的用户快捷键
   --home     仅更新仓库 home/ 下的全部配置
+  --mac      仅更新 macOS 配置
   -h, --help 显示帮助
 EOF
 }
@@ -48,6 +51,7 @@ while (($#)); do
     --zsh) install_zsh=true ;;
     --vscode) install_vscode=true ;;
     --home) install_home=true ;;
+    --mac) install_mac=true ;;
     -h|--help) usage; exit 0 ;;
     *) printf '未知选项: %s\n' "$1" >&2; usage >&2; exit 2 ;;
   esac
@@ -55,18 +59,18 @@ while (($#)); do
 done
 
 if [[ "${install_brew}" == true &&
-      ( "${install_nvim}" == true || "${install_karabiner}" == true || "${install_hammerspoon}" == true || "${install_wezterm}" == true || "${install_zsh}" == true || "${install_vscode}" == true || "${install_home}" == true ) ]]; then
-  printf '错误: --brew 不能与 --nvim、--karabiner、--hammerspoon、--wezterm、--zsh、--vscode 或 --home 同时使用。\n' >&2
+      ( "${install_nvim}" == true || "${install_karabiner}" == true || "${install_hammerspoon}" == true || "${install_wezterm}" == true || "${install_zsh}" == true || "${install_vscode}" == true || "${install_home}" == true || "${install_mac}" == true ) ]]; then
+  printf '错误: --brew 不能与 --nvim、--karabiner、--hammerspoon、--wezterm、--zsh、--vscode、--home 或 --mac 同时使用。\n' >&2
   exit 2
 fi
 
 selected_config_count=0
-for selected_config in "${install_nvim}" "${install_karabiner}" "${install_hammerspoon}" "${install_wezterm}" "${install_zsh}" "${install_vscode}" "${install_home}"; do
+for selected_config in "${install_nvim}" "${install_karabiner}" "${install_hammerspoon}" "${install_wezterm}" "${install_zsh}" "${install_vscode}" "${install_home}" "${install_mac}"; do
   [[ "${selected_config}" == true ]] && ((selected_config_count += 1))
 done
 
 if ((selected_config_count > 1)); then
-  printf '错误: --nvim、--karabiner、--hammerspoon、--wezterm、--zsh、--vscode 和 --home 不能同时使用。\n' >&2
+  printf '错误: --nvim、--karabiner、--hammerspoon、--wezterm、--zsh、--vscode、--home 和 --mac 不能同时使用。\n' >&2
   exit 2
 fi
 
@@ -126,10 +130,25 @@ ensure_uv() {
   printf 'uv 安装完成: %s\n' "$(command -v uv)"
 }
 
+install_mac_config() {
+  if [[ ! -f "${MAC_CONFIG_SOURCE}" ]]; then
+    printf '错误: 未找到 macOS 配置脚本: %s\n' "${MAC_CONFIG_SOURCE}" >&2
+    exit 1
+  fi
+
+  bash "${MAC_CONFIG_SOURCE}"
+}
+
 if ((selected_config_count == 0)); then
   ensure_cargo
   install_tree_sitter_cli
   ensure_uv
+fi
+
+if [[ "${install_mac}" == true ]]; then
+  install_mac_config
+  printf '\nMac 配置安装完成。\n'
+  exit 0
 fi
 
 timestamp="$(date '+%Y%m%d-%H%M%S')"
