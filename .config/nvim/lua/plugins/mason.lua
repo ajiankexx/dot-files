@@ -14,6 +14,8 @@ return {
             'clangd',
             'shellcheck',
             'clang-format',
+            'kotlin-language-server',
+            'rust-analyzer',
             'jdtls',
             'java-debug-adapter',
             'java-test',

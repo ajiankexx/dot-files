@@ -23,6 +23,7 @@ return {
             'lemminx', -- xml lsp
             'yamlls',
             'gopls',
+            'kotlin_language_server',
             'rust_analyzer',
         },
     }

@@ -1,5 +1,14 @@
 vim.g.matchup_matchparen_offscreen = { method = 'popup' }
 
+local ensured_parsers = {
+    'c',
+    'cpp',
+    'dart',
+    'kotlin',
+    'rust',
+    'swift',
+}
+
 local select_keymaps = {
     ['af'] = { '@function.outer', 'Around function' },
     ['if'] = { '@function.inner', 'Inside function' },
@@ -173,6 +182,12 @@ return {
         },
     },
     config = function()
+        -- Parser installation is asynchronous. Keep headless checks free of
+        -- network and compiler side effects; an interactive startup installs
+        -- only parsers that are still missing.
+        if #vim.api.nvim_list_uis() > 0 then
+            require('nvim-treesitter').install(ensured_parsers)
+        end
         vim.api.nvim_create_autocmd('FileType', {
             pattern = '*',
             callback = function(args)

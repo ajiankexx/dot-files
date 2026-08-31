@@ -15,11 +15,19 @@ return {
             capabilities = require('utils').get_lsp_capabilities(),
             root_markers = vim.g.root_markers,
         })
+        -- sourcekit-lsp also advertises C/C++ support, but clangd provides the
+        -- dedicated C/C++ integration below. Restrict SourceKit to Swift so a
+        -- C/C++ buffer does not start two language servers.
+        vim.lsp.config('sourcekit', {
+            filetypes = { 'swift' },
+        })
         vim.lsp.enable({
             'bashls',
             'clangd',
+            'dartls',
             'eslint',
             'jsonls',
+            'kotlin_language_server',
             'lemminx',
             'lua_ls',
             'neocmake',
@@ -31,6 +39,7 @@ return {
             'markdown_oxide',
             'gopls',
             'rust_analyzer',
+            'sourcekit',
         })
         local map_set = require('utils').map_set
         map_set(
