@@ -10,3 +10,7 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt inc_append_history
 setopt share_history
+
+# HISTFILE is configured from .zshrc, after zsh's implicit history-file load.
+# Load it explicitly so a newly opened terminal can search prior sessions.
+[[ -r "$HISTFILE" ]] && fc -R "$HISTFILE"
