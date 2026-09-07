@@ -23,26 +23,6 @@
                         ]
                     },
                     {
-                        "description": "Left Shift alone to Ctrl+Space faster",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_shift",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "parameters": { "basic.to_if_alone_timeout_milliseconds": 250 },
-                                "to": [{ "key_code": "left_shift" }],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "spacebar",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Chrome tab navigation",
                         "manipulators": [
                             {
