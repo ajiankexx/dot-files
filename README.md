@@ -69,6 +69,9 @@ DOTFILES_BACKUP_DIR=/path/to/backups bash install.sh
 bash install.sh --brew
 ```
 
+该软件包清单包含 `terminal-notifier`，可从命令行和自动化 Hook 发送 macOS
+系统通知。用法与故障排查见 [Mac 配置记录](/MAC_CONFIG.md)。
+
 仅安装 Karabiner 配置：
 
 ```sh
