@@ -1,0 +1,651 @@
+{
+    "debug.onTaskErrors": "showErrors",
+    "cmake.configureOnOpen": true,
+    "cmake.additionalCompilerSearchDirs": [
+        "C:/msys64/mingw32/bin",
+        "C:/msys64/mingw64/bin",
+        "C:/msys64/clang32/bin",
+        "C:/msys64/clang64/bin",
+        "C:/msys64/clangarm64/bin",
+        "C:/msys64/ucrt64/bin"
+    ],
+    "code-runner.clearPreviousOutput": true,
+    "editor.fontSize": 16,
+    "explorer.confirmDelete": false,
+    "files.defaultLanguage": "cpp",
+    "files.enableTrash": false,
+    "editor.lineNumbers": "relative",
+    "workbench.colorCustomizations": {
+    "peekView.border": "#4FC1FFFF",
+    "peekViewTitle.background": "#25384A",
+    "peekViewEditor.background": "#17212B",
+    "peekViewEditorGutter.background": "#17212B",
+    "peekViewResult.background": "#1E2A35",
+    "peekViewResult.selectionBackground": "#365A7A",
+    "peekViewResult.selectionForeground": "#FFFFFF",
+    "peekViewResult.matchHighlightBackground": "#A66F0066",
+    "peekViewEditor.matchHighlightBackground": "#A66F0066",
+  },
+    // "workbench.colorCustomizations": {
+    //     "editor.lineHighlightBackground": "#2a2a2a50", 
+    //     "editor.lineHighlightBorder": "#2a2a2a50",
+    //     "editor.findMatchBackground": "#33cc3350",           // 当前搜索匹配的背景
+    //     "editor.findMatchBorder": "#33cc3350",                 // 当前搜索匹配的边框
+    //     "editor.findMatchHighlightBackground": "#33cc3350", // 其他匹配项背景
+    //     "editor.findMatchHighlightBorder": "#33cc3350",       // 其他匹配项边框
+    //     "editor.selectionHighlightBackground": "#33cc3350"  // 选中时高亮背景
+
+    // },
+    "editor.cursorBlinking": "solid",
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "window.confirmSaveUntitledWorkspace": false,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.md": "vscode.markdown.editor"
+    },
+    "git.autofetch": true,
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false,
+        "<C-c>": false,
+        "<C-v>": false
+    },
+    "Lingma.cloudModelAutoTriggerDisplayRule": false,
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "Lingma.cloudModelAutoTriggerGenerateLength": "disable",
+    "matlab.matlabpath": "D:\\Program Files\\Matlab\\bin\\matlab.exe",
+    "matlab.mlintpath": "D:\\Program Files\\Matlab\\bin\\win64\\mlint.exe",
+    "terminal.integrated.commandsToSkipShell": [
+        "matlab.interrupt"
+    ],
+    "interactiveWindow.executeWithShiftEnter": true,
+    "github.copilot.editor.enableCodeActions": false,
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on"
+    },
+    "Lingma.HttpProxySettings": "system",
+    "editor.wordWrap": "on",
+    "git.ignoreLegacyWarning": true,
+    "remote.SSH.remotePlatform": {
+        "Main": "linux",
+        "labserver": "linux",
+        "labserver2": "linux",
+        "aozhixiang": "linux",
+        "aaa": "linux",
+        "Main2": "linux",
+        "Main3": "linux"
+    },
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "g",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "g",
+                "k"
+            ]
+        },
+    ],
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "workbench.colorCustomizations": {
+        "diffEditor.insertedTextBackground": "#d6e68533", // 浅绿色，透明度低
+        "diffEditor.removedTextBackground": "#f7c6c733", // 浅红色，透明度低
+        "diffEditor.insertedLineBackground": "#d6e68520", // 新增行背景
+        "diffEditor.removedLineBackground": "#f7c6c720" // 删除行背景
+    },
+    // "workbench.colorTheme": "Visual Studio 2017 Dark - C++",
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "vim.commandLineModeKeyBindingsNonRecursive": [],
+    "git.openRepositoryInParentFolders": "never",
+    "redhat.telemetry.enabled": false,
+    "latex-workshop.intellisense.bibtexJSON.replace": {},
+    "explorer.confirmDragAndDrop": false,
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": true,
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "notebook.output.fontFamily": "Consolas, 'Courier New', monospace",
+    "notebook.output.scrolling": true,
+    "jupyter.askForKernelRestart": false,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "workbench.activityBar.location": "top",
+    "workbench.editorLargeFileConfirmation": 20,
+    "workbench.settings.applyToAllProfiles": [
+
+        // 06D001
+    ],
+    "todohighlight.keywords": [
+        {
+            "text": " NOTE",
+            "color": "#06D001",
+            "backgroundColor": "#000000"
+        },
+        {
+            "text": " TODO", // 关键词
+            "color": "#FFA500", // 文字颜色
+            "backgroundColor": "rgba(255,165,0,0.2)" // 背景颜色（可选）
+        },
+        {
+            "text": " BUG",
+            "color": "#FF0000",
+            "backgroundColor": "#000000"
+        },
+        {
+            "text": " PROBLEM",
+            "color": "#9400FF",
+            "backgroundColor": "#FFFFFF"
+        },
+        {
+            "text": " STATUS",
+            "color": "#F96E2A",
+            "backgroundColor": "#000000"
+        },
+    ],
+    // below is config for PlantUML
+    "plantuml.commandArgs": [
+        "-DPLANTUML_LIMIT_SIZE=8192"
+    ], // 增加生成图的内存限制
+    "plantuml.theme": "contrast",
+    "plantuml.exportFormat": "svg", // 导出格式：png, svg, pdf 等
+    "plantuml.previewAutoUpdate": false,
+    "plantuml.plantumlPath": "/root/plantuml-1.2024.8.jar",
+    "plantuml.graphvizDotPath": "/usr/lib/x86_64-linux-gnu/graphviz",
+    //config for REST Client
+    "rest-client.previewResponseInUntitledDocument": true,
+    "rest-client.certificates": {},
+
+    "python.analysis.languageServerMode": "full",
+
+    // rainbow csv
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "rainbow1.csv.token", // 第一列
+                    "rainbow2.csv.token", // 第二列
+                    "rainbow3.csv.token", // 第三列
+                    "rainbow4.csv.token", // 第四列
+                    "rainbow5.csv.token", // 第五列
+                    "rainbow6.csv.token", // 第六列
+                    "rainbow7.csv.token" // 第七列
+                ],
+                "settings": {
+                    "foreground": "#FF5733" // 自定义颜色
+                }
+            },
+            {
+                "scope": "rainbow1.csv.token",
+                "settings": {
+                    "foreground": "#33C1FF" // 第二列颜色
+                }
+            }
+        ]
+    },
+
+
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "editor.mouseWheelScrollSensitivity": 5,
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "vscode-neovim.highlightGroups.highlights": {
+        "IncSearch": {
+            "backgroundColor": "theme.editor.findMatchBackground"
+        },
+        "CurSearch": {
+            "backgroundColor": "theme.editor.findMatchBackground"
+        },
+        "Search": {
+            "backgroundColor": "theme.editor.findMatchHighlightBackground"
+        },
+        "Substitute": {
+            "backgroundColor": "theme.editor.foreground",
+            "color": "theme.editor.background"
+        }
+    },
+    "vscode-neovim.compositeKeys": {},
+    "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
+    "files.watcherExclude": {
+        "**/.git/**": true,
+        "**/node_modules/*/**": true
+    },
+    "vscode-neovim.wslDistribution": "Ubuntu24",
+    "python.analysis.importFormat": "relative",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.userFileIndexingLimit": 8000,
+    "remoteHub.staging.enabled": false,
+    "vscode-neovim.logOutputToConsole": true,
+    "vscode-neovim.neovimInitVimPaths.linux": "/home/ajiankex/.config/nvim/init.lua",
+    "vscode-neovim.ctrlKeysForInsertMode": [
+        "d",
+        "h",
+        "j",
+        "m",
+        "o",
+        "r",
+        "t",
+        "u",
+        "w"
+    ],
+    "vscode-neovim.ctrlKeysForNormalMode": [
+        "d",
+        "o",
+        "u",
+        "a",
+        "i"
+    ],
+    "vscode-neovim.neovimClean": true,
+    "markdown.marp.browser": "chrome",
+    "markdown.marp.exportType": "pptx",
+    "security.workspace.trust.enabled": false,
+    "remote.localPortHost": "allInterfaces",
+    "notebook.lineNumbers": "on",
+    "notebook.output.wordWrap": true,
+    "java.completion.guessMethodArguments": "off",
+    "editor.quickSuggestionsDelay": 5,
+    "editor.snippetSuggestions": "bottom",
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "editor.insertSpaces": true,
+    "leetcode.endpoint": "leetcode-cn",
+    "markdown.preview.fontSize": 16,
+    "leetcode.defaultLanguage": "cpp",
+    "leetcode.editor.shortcuts": [
+        "submit",
+        "test",
+        "star",
+        "solution",
+        "description"
+    ],
+    "leetcode.language.preamble": {
+        "cpp": "#include <bits/stdc++.h>\nusing namespace std;",
+    },
+    "leetcode.workspaceFolder": "/home/ajiankex/.leetcode",
+    "leetcode.hint.commandShortcut": false,
+    "leetcode.hint.configWebviewMarkdown": false,
+    "leetcode.hint.commentDescription": false,
+    "leetcode-cpp-debugger.source": "[online]leetcode-cn.com",
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cStandard": "c23",
+    "code-runner.executorMap": {
+        "javascript": "node",
+        "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+        "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "zig": "zig run",
+        "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt.out && $dir$fileNameWithoutExt.out",
+        "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "php": "php",
+        "python": "python -u",
+        "perl": "perl",
+        "perl6": "perl6",
+        "ruby": "ruby",
+        "go": "go run",
+        "lua": "lua",
+        "groovy": "groovy",
+        "powershell": "powershell -ExecutionPolicy ByPass -File",
+        "bat": "cmd /c",
+        "shellscript": "bash",
+        "fsharp": "fsi",
+        "csharp": "scriptcs",
+        "vbscript": "cscript //Nologo",
+        "typescript": "ts-node",
+        "coffeescript": "coffee",
+        "scala": "scala",
+        "swift": "swift",
+        "julia": "julia",
+        "crystal": "crystal",
+        "ocaml": "ocaml",
+        "r": "Rscript",
+        "applescript": "osascript",
+        "clojure": "lein exec",
+        "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+        "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+        "racket": "racket",
+        "scheme": "csi -script",
+        "ahk": "autohotkey",
+        "autoit": "autoit3",
+        "dart": "dart",
+        "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+        "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+        "haskell": "runghc",
+        "nim": "nim compile --verbosity:0 --hints:off --run",
+        "lisp": "sbcl --script",
+        "kit": "kitc --run",
+        "v": "v run",
+        "sass": "sass --style expanded",
+        "scss": "scss --style expanded",
+        "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
+        "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "sml": "cd $dir && sml $fileName",
+        "mojo": "mojo run",
+        "erlang": "escript",
+        "spwn": "spwn build",
+        "pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
+        "gleam": "gleam run -m $fileNameWithoutExt"
+    },
+    "cmake.showConfigureWithDebuggerNotification": false,
+    "files.autoSave": "afterDelay",
+    "mongodbLanguageServer.trace.server": {},
+    "mongodbLanguageServer.maxNumberOfProblems": 2,
+    "mdb.showMongoDBHelpExplorer": false,
+    "mdb.confirmRunAll": false,
+    "mdb.excludeFromPlaygroundsSearch": [
+        "/mnt/e/learn_mongo"
+    ],
+    "mdb.useDefaultTemplateForPlayground": false,
+    "mdb.defaultLimit": 150,
+    "remote.autoForwardPortsSource": "hybrid",
+    "editor.inlayHints.enabled": "off",
+    // "C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
+    // "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine",
+    // "C_Cpp.vcFormat.newLine.beforeOpenBrace.lambda": "sameLine",
+    // "C_Cpp.vcFormat.newLine.beforeOpenBrace.namespace": "sameLine",
+    // "C_Cpp.vcFormat.newLine.beforeOpenBrace.type": "sameLine",
+    // "C_Cpp.vcFormat.indent.caseContents": false,
+    // "C_Cpp.vcFormat.indent.lambdaBracesWhenParameter": false
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<C-l>"
+            ],
+            "after": [
+                "l"
+            ]
+        }
+    ],
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<C-l>"
+            ],
+            "after": [
+                "<Right>"
+            ]
+        }
+    ],
+    "sqltools.connections": [
+        {
+            "name": "devdb",
+            "driver": "PostgreSQL",
+            "server": "127.0.0.1",
+            "port": 5432,
+            "username": "devuser",
+            "password": "1234",
+            "database": "devdb"
+        }
+    ],
+    "sqltools.autoConnectTo": "devdb",
+    "sqltools.results.reuseTabs": "connection",
+    "[sql]": {
+        "editor.defaultFormatter": "mtxr.sqltools"
+    },
+    "editor.indentSize": "tabSize",
+    "editor.detectIndentation": false,
+    "C_Cpp.vcFormat.indent.caseContents": false,
+    "C_Cpp.vcFormat.indent.lambdaBracesWhenParameter": false,
+    "C_Cpp.vcFormat.indent.namespaceContents": false,
+    "C_Cpp.vcFormat.newLine.beforeCatch": false,
+    "C_Cpp.vcFormat.newLine.beforeElse": false,
+    "C_Cpp.vcFormat.space.afterComma": false,
+    "C_Cpp.vcFormat.space.afterKeywordsInControlFlowStatements": false,
+    "C_Cpp.vcFormat.space.beforeInheritanceColon": false,
+    // "[cpp]": {
+    //     "editor.defaultFormatter": "xaver.clang-format"
+    // },
+    // "C_Cpp.formatting": "clangFormat",
+    "editor.formatOnSave": true,
+    "C_Cpp.clang_format_sortIncludes": true,
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "[cpp]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    },
+    "C_Cpp.formatting": "clangFormat",
+    "clang-format.fallbackStyle": "",
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, AccessModifierOffset: -4, IndentWidth: 4, TabWidth:4, UseTab: Never }",
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clang-format.language.cpp.fallbackStyle": "file:/home/ajiankex/.clang-format",
+    "clang-format.language.apex.enable": false,
+    "clang-format.language.cpp.style": "file:/home/ajiankex/.clang-format",
+    "clangd.checkUpdates": false,
+    "clangd.arguments": [
+    "--style={ BasedOnStyle: Google, AccessModifierOffset: -4, IndentWidth: 4, TabWidth:4, UseTab: Never }"
+],
+"python.analysis.extraPaths": [
+    "./src"
+],
+
+"python.languageServer": "Pylance",
+"workbench.startupEditor": "none",
+"python.analysis.diagnosticsSource": "Pylance",
+"github.copilot.nextEditSuggestions.enabled": true,
+"mdb.mcp.server": "prompt",
+"workbench.secondarySideBar.defaultVisibility": "hidden",
+"chat.emptyState.history.enabled": true,
+"syntax.highlightLanguages": [
+    "c",
+    "cpp",
+    "python",
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "go",
+    "rust",
+    "php",
+    "ruby",
+    "shellscript",
+    "ocaml",
+    "lua"
+],
+ "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.showContextMenu": true,
+    "latex-workshop.intellisense.package.enabled": true,
+    "latex-workshop.message.error.show": false,
+    "latex-workshop.message.warning.show": false,
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "XeLaTeX",
+            "tools": [
+                "xelatex"
+            ]
+        },
+        {
+            "name": "PDFLaTeX",
+            "tools": [
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "BibTeX",
+            "tools": [
+                "bibtex"
+            ]
+        },
+        {
+            "name": "LaTeXmk",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "xelatex -> bibtex -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex*2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+    ],
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk"
+    ],
+    "latex-workshop.latex.autoClean.run": "onFailed",
+    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "claudeCode.preferredLocation": "panel",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "typescript.experimental.useTsgo": true,
+    "workbench.layoutControl.enabled": false,
+    "workbench.editor.empty.hint": "hidden",
+
+    "go.toolsEnvVars": {
+        "GOPRIVATE": "git.garena.com"
+    },
+    "gopls": {
+        "env": {
+        "GOPRIVATE": "git.garena.com"
+        }
+    },
+    "[go]": {
+
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "terminal.integrated.profiles.osx": {
+        "bash": {
+            "path": "bash",
+            "args": [
+                "-l"
+            ],
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "/bin/zsh",
+            "args": [
+                "-l"
+            ]
+        },
+        "fish": {
+            "path": "fish",
+            "args": [
+                "-l"
+            ]
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    },
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "workbench.colorTheme": "GitHub Dark High Contrast",
+    "gitlens.views.scm.grouped.views": {
+        "commits": true,
+        "branches": true,
+        "remotes": true,
+        "stashes": true,
+        "tags": true,
+        "worktrees": true,
+        "contributors": true,
+        "fileHistory": false,
+        "repositories": true,
+        "searchAndCompare": false,
+        "launchpad": true
+    },
+    "security.promptForLocalFileProtocolHandling": false,
+    "claudeCode.hideOnboarding": true,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4o-mini",
+    "git.confirmSync": false
+}
