@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Highlighted Active Tab",
+  "version": "1.0",
+  "theme": {
+    "colors": {
+      "frame": [25, 25, 28],
+      "frame_inactive": [25, 25, 28],
+      "toolbar": [48, 82, 130],
+      "tab_text": [255, 255, 255],
+      "tab_background_text": [150, 155, 165],
+      "bookmark_text": [255, 255, 255],
+      "omnibox_text": [255, 255, 255],
+      "omnibox_background": [30, 48, 72]
+    }
+  }
+}
